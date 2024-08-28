@@ -32,7 +32,6 @@ if ($result->rowCount() > 0) {
 
 
     echo json_encode($resultInfo, JSON_UNESCAPED_UNICODE);
-    echo json_encode(array("message" => "เข้าสู่ระบบ!!"));
 } else {
     $resultInfo = array();
     $resultArray = array(
