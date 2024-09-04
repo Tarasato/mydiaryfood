@@ -39,5 +39,8 @@ if ($result->rowCount() > 0) {
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
     //echo json_encode(array("message" => "เข้าสู่ระบบ!!"));
 } else {
+    $resultArray = array(
+        "message" => "0"
+    );
     echo json_encode(array("message" => "ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง"));
 }

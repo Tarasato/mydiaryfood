@@ -1,4 +1,11 @@
 {
-    "memUsername":"Kim254701",
-    "memPassword":"123456"
-  }
+  "foodShopname":"ไอติมขายชาติ",
+  "foodMeal":"2",
+  "foodImage":"mixue.png",
+  "foodPay":"15",
+  "foodDate":"4 กันยายน 2567",
+  "foodProvince":"กรุงเทพมหานคร",
+  "foodLat":"13.7203918",
+  "foodLng":"100.4083948",
+  "memId":"1"
+}
