@@ -17,7 +17,6 @@ $data = json_decode(file_get_contents("php://input"));
 //เอาค่าในตัวแปรกำหนดให้กับ ตัวแปรของ Model ที่สร้างไว้
 $diaryfood->foodShopname = $data->foodShopname;
 $diaryfood->foodMeal = $data->foodMeal;
-$diaryfood->foodImage = $data->foodImage;
 $diaryfood->foodPay = $data->foodPay;
 $diaryfood->foodDate = $data->foodDate;
 $diaryfood->foodProvince = $data->foodProvince;
@@ -25,7 +24,18 @@ $diaryfood->foodLat = $data->foodLat;
 $diaryfood->foodLng = $data->foodLng;
 $diaryfood->memId = $data->memId;
 
-//เรียกใช้ฟังก์ชันตรวจสอบชื่อผู้ใช้ รหัสผ่าน
+//------อัพรูปแบบ Base 64-------
+//เก็บรูป Base64 ไว้ในตัวแปร
+$picture_temp = $data->foodImage;
+//ตั้งชื่อรูปใหม่เพื่อใช้กับรูปที่เป็น Base 64 ที่ส่งมา
+$picture_filename = "pic_" . uniqid() . "_"  . round(microtime(true)*1000) . ".jpg";
+//เอารูปที่เป็น Base64 แปลงเป็นรูปแล้วเก็บไว้ใน picupload/food/
+//file_put_contents(ที่อยู่ของไฟล์+ชื่อไฟล์, ตัวไฟล์ที่จะอัปโหลดไว้)
+file_put_contents("./../picupload/food/" . $picture_filename, base64_decode($picture_temp));
+//เอาชื่อไฟล์ไปกำหนดให้กับตัวแปรที่จะเก็บลงในฐานข้อมูล
+$diaryfood->foodImage = $picture_filename;
+//---------------------------------
+
 $result = $diaryfood->insertDiaryFood();
 
 //ตรวจสอบข้อมูลจากการเรัยกใช้ฟังก์ชันตรวจสอบชื่อผู้ใช้ รหัสผ่าน

@@ -122,15 +122,19 @@ class diaryfood
     }
 
     //ฟังก์ชันแก้ไขข้อมูลบันทึกการกิน
-    public function updateDiaryfood()
-    {
-        $strSQL = "UPDATE diaryfood_tb SET `foodShopname` = :foodShopname, `foodMeal` = :foodMeal, `foodImage` = :foodImage, `foodPay` = :foodPay, `foodDate` = :foodDate, `foodProvince` = :foodProvince, `foodLat` = :foodLat, `foodLng` = :foodLng, `memId` = :memId WHERE `foodId` = :foodId;";
+    public function updateDiaryfood(){   
+        $strSQL = "";
+        if($this->foodImage == ""){
+        $strSQL = "UPDATE diaryfood_tb SET `foodShopname` = :foodShopname, `foodMeal` = :foodMeal, `foodPay` = :foodPay, `foodDate` = :foodDate, `foodProvince` = :foodProvince, `foodLat` = :foodLat, `foodLng` = :foodLng, `memId` = :memId WHERE `foodId` = :foodId;";
 
+    }else{$strSQL = "UPDATE diaryfood_tb SET `foodShopname` = :foodShopname, `foodMeal` = :foodMeal, `foodImage` = :foodImage, `foodPay` = :foodPay, `foodDate` = :foodDate, `foodProvince` = :foodProvince, `foodLat` = :foodLat, `foodLng` = :foodLng, `memId` = :memId WHERE `foodId` = :foodId;";
+}
+        
         //ตรวจสอบค่าที่ถูกส่งจาก Client/User ก่อนที่จะกำหนดให้กับ parameters (:????)
         $this->foodId = intval(htmlspecialchars(strip_tags($this->foodId)));
         $this->foodShopname = htmlspecialchars(strip_tags($this->foodShopname));
         $this->foodMeal = intval(htmlspecialchars(strip_tags($this->foodMeal)));
-        $this->foodImage = htmlspecialchars(strip_tags($this->foodImage));
+        if($this->foodImage != ""){$this->foodImage = htmlspecialchars(strip_tags($this->foodImage));}
         $this->foodPay = intval(htmlspecialchars(strip_tags($this->foodPay)));
         $this->foodDate = htmlspecialchars(strip_tags($this->foodDate));
         $this->foodProvince = htmlspecialchars(strip_tags($this->foodProvince));
@@ -145,7 +149,7 @@ class diaryfood
         $stmt->bindParam(":foodId", $this->foodId);
         $stmt->bindParam(":foodShopname", $this->foodShopname);
         $stmt->bindParam(":foodMeal", $this->foodMeal);
-        $stmt->bindParam(":foodImage", $this->foodImage);
+        if($this->foodImage != ""){$stmt->bindParam(":foodImage", $this->foodImage);}
         $stmt->bindParam(":foodPay", $this->foodPay);
         $stmt->bindParam(":foodDate", $this->foodDate);
         $stmt->bindParam(":foodProvince", $this->foodProvince);
