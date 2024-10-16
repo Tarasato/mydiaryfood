@@ -6,7 +6,7 @@ class Member
     private $connDB;
 
     //ตัวแปรที่ทำงานคู่กับคอลัมน์(ฟิวล์)ในตาราง
-    public $memid;
+    public $memId;
     public $memFullname;
     public $memEmail;
     public $memUsername;
@@ -66,6 +66,37 @@ class Member
 
         //เอาที่ผ่านการตรวจแล้วไปกำหนดให้กับ parameters
         $stmt->bindParam(":memFullname", $this->memFullname);
+        $stmt->bindParam(":memEmail", $this->memEmail);
+        $stmt->bindParam(":memUsername", $this->memUsername);
+        $stmt->bindParam(":memPassword", $this->memPassword);
+        $stmt->bindParam(":memAge", $this->memAge);
+
+        //สั่งให้ SQL ทำงาน และส่งผลลัพธ์ว่าเพิ่มข้อมูลสําเร็จหรือไม่
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //ฟังก์ชันแก้ไขข้อมูลผู้ใช้
+    public function updateMember()
+    {
+        //ตัวแปรเก็บคำสั่ง SQL
+        $strSQL = "UPDATE member_tb SET memEmail = :memEmail, memUsername = :memUsername, memPassword = :memPassword, memAge = :memAge WHERE memId = :memId";
+
+        //ตรวจสอบค่าที่ถูกส่งจาก Client/User ก่อนที่จะกำหนดให้กับ parameters (:????)
+        $this->memId = intval(htmlspecialchars(strip_tags($this->memId)));
+        $this->memEmail = htmlspecialchars(strip_tags($this->memEmail));
+        $this->memUsername = htmlspecialchars(strip_tags($this->memUsername));
+        $this->memPassword = htmlspecialchars(strip_tags($this->memPassword));
+        $this->memAge = intval(htmlspecialchars(strip_tags($this->memAge)));
+
+        //สร้างตัวแปรที่ใช้ทำงานกับคำสั่ง SQL
+        $stmt = $this->connDB->prepare($strSQL);
+
+        //เอาที่ผ่านการตรวจแล้วไปกำหนดให้กับ parameters
+        $stmt->bindParam(":memId", $this->memId);
         $stmt->bindParam(":memEmail", $this->memEmail);
         $stmt->bindParam(":memUsername", $this->memUsername);
         $stmt->bindParam(":memPassword", $this->memPassword);
