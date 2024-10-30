@@ -29,12 +29,12 @@ if ($result->rowCount() > 0) {
     //สร้างตัวแปรอาร์เรย์เก็บข้อมูล
     $resultArray = array(
         "message" => "1",
-        "memId" => $memId,
+        "memId" => strval($memId),
         "memUsername" => $memUsername,
         "memPassword" => $memPassword,
-        "memFullname" => $memFullname,
+        "memFullname" => $memFullName,
         "memEmail" => $memEmail,
-        "memAge" => $memAge
+        "memAge" => strval($memAge)
     );
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
     //echo json_encode(array("message" => "เข้าสู่ระบบ!!"));
