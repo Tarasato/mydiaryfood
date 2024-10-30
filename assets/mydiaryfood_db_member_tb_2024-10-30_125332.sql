@@ -16,6 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `diaryfood_tb`
+--
+
+DROP TABLE IF EXISTS `diaryfood_tb`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `diaryfood_tb` (
+  `foodId` int(11) NOT NULL AUTO_INCREMENT,
+  `foodShopname` varchar(100) NOT NULL,
+  `foodMeal` int(11) NOT NULL,
+  `foodImage` varchar(100) NOT NULL,
+  `foodPay` double NOT NULL,
+  `foodDate` varchar(100) NOT NULL,
+  `foodProvince` varchar(100) NOT NULL,
+  `foodLat` double NOT NULL,
+  `foodLng` double NOT NULL,
+  `memId` int(11) NOT NULL,
+  PRIMARY KEY (`foodId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `diaryfood_tb`
+--
+
+/*!40000 ALTER TABLE `diaryfood_tb` DISABLE KEYS */;
+INSERT INTO `diaryfood_tb` VALUES (1,'Tiramisu',1,'tiramisu.png',250,'30ตุลาคม257','กรุมเทพมหานคร',100.3,300.5,1),(2,'Cakeshop',2,'cake.png',150,'30 ตุลาคม 2567','กรุงเทพมหานคร',100.2,300.5,1),(3,'ชิ้นปิ้ง',3,'meatball.png',110,'29 ตุลาคม 2567','กรุงเทพมหานคร',100.6,300.3,2),(4,'หนมหวาน',4,'snack.png',80,'30 ตุลาคม 2567','กรุงเทพมหานคร',100.31,300.69,2);
+/*!40000 ALTER TABLE `diaryfood_tb` ENABLE KEYS */;
+
+--
 -- Table structure for table `member_tb`
 --
 
@@ -38,8 +68,12 @@ CREATE TABLE `member_tb` (
 --
 
 /*!40000 ALTER TABLE `member_tb` DISABLE KEYS */;
-INSERT INTO `member_tb` VALUES (1,'กรรชัย สิงห์โคต','taramiratsu@gmail.com','Tarasato','123',20),(2,'Test test','test.gamail.com','Test','1234',20),(3,'Rebeca','Rebec.gmail','Rebeca','1234',20),(4,'Test2','Test2@male.com','Test2','123',20);
+INSERT INTO `member_tb` VALUES (1,'กรรชัย สิงห์โคต','taramiratsu@gmail.com','Tarasato','123',20),(2,'Test test','test.gamail.com','Test','1',20),(3,'Rebeca','Rebec.gmail','Rebeca','1234',20),(4,'Test2','Test2@male.com','Test2','123',20);
 /*!40000 ALTER TABLE `member_tb` ENABLE KEYS */;
+
+--
+-- Dumping routines for database 'mydiaryfood_db'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -50,4 +84,4 @@ INSERT INTO `member_tb` VALUES (1,'กรรชัย สิงห์โคต',
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-30 12:53:38
+-- Dump completed on 2024-10-30 13:20:47
