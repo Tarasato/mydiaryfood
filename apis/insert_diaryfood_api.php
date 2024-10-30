@@ -28,7 +28,7 @@ $diaryfood->memId = $data->memId;
 //เก็บรูป Base64 ไว้ในตัวแปร
 $picture_temp = $data->foodImage;
 //ตั้งชื่อรูปใหม่เพื่อใช้กับรูปที่เป็น Base 64 ที่ส่งมา
-$picture_filename = "pic_" . uniqid() . "_"  . round(microtime(true)*1000) . ".jpg";
+$picture_filename = "pic_" . uniqid() . "_"  . round(microtime(true)*1000) . ".png";
 //เอารูปที่เป็น Base64 แปลงเป็นรูปแล้วเก็บไว้ใน picupload/food/
 //file_put_contents(ที่อยู่ของไฟล์+ชื่อไฟล์, ตัวไฟล์ที่จะอัปโหลดไว้)
 file_put_contents("./../picupload/food/" . $picture_filename, base64_decode($picture_temp));
