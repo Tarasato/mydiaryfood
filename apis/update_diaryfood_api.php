@@ -18,7 +18,6 @@ $data = json_decode(file_get_contents("php://input"));
 $diaryfood->foodId = $data->foodId;
 $diaryfood->foodShopname = $data->foodShopname;
 $diaryfood->foodMeal = $data->foodMeal;
-//$diaryfood->foodImage = $data->foodImage;
 $diaryfood->foodPay = $data->foodPay;
 $diaryfood->foodDate = $data->foodDate;
 $diaryfood->foodProvince = $data->foodProvince;
@@ -35,7 +34,7 @@ if(isset($data->foodImage)){
     $picture_filename = "pic_" . uniqid() . "_"  . round(microtime(true)*1000) . ".jpg";
     //เอารูปที่เป็น Base64 แปลงเป็นรูปแล้วเก็บไว้ใน picupload/food/
     //file_put_contents(ที่อยู่ของไฟล์+ชื่อไฟล์, ตัวไฟล์ที่จะอัปโหลดไว้)
-    file_put_contents("./../picupload/food/" . $picture_filename, base64_decode($picture_temp));
+    file_put_contents("./../assets/images/picupload/foods/" . $picture_filename, base64_decode($picture_temp));
     //เอาชื่อไฟล์ไปกำหนดให้กับตัวแปรที่จะเก็บลงในฐานข้อมูล
     $diaryfood->foodImage = $picture_filename;
     //---------------------------------

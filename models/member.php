@@ -12,6 +12,7 @@ class Member
     public $memUsername;
     public $memPassword;
     public $memAge;
+    public $memImage;
 
     //ตัวแปรสารพัดประโยชน์
     public $message;
@@ -52,7 +53,7 @@ class Member
     public function registerMember()
     {
         //ตัวแปรเก็บคำสั่ง SQL
-        $strSQL = "INSERT INTO member_tb (`memFullname`, `memEmail`, `memUsername`, `memPassword`, `memAge` ) VALUES (:memFullname, :memEmail, :memUsername, :memPassword, :memAge);";
+        $strSQL = "INSERT INTO member_tb (`memFullname`, `memEmail`, `memUsername`, `memPassword`, `memAge` , `memImage`) VALUES (:memFullname, :memEmail, :memUsername, :memPassword, :memAge, :memImage);";
 
         //ตรวจสอบค่าที่ถูกส่งจาก Client/User ก่อนที่จะกำหนดให้กับ parameters (:????)
         $this->memFullname = htmlspecialchars(strip_tags($this->memFullname));
@@ -60,6 +61,7 @@ class Member
         $this->memUsername = htmlspecialchars(strip_tags($this->memUsername));
         $this->memPassword = htmlspecialchars(strip_tags($this->memPassword));
         $this->memAge = intval(htmlspecialchars(strip_tags($this->memAge)));
+        $this->memImage = htmlspecialchars(strip_tags($this->memImage));
 
         //สร้างตัวแปรที่ใช้ทำงานกับคำสั่ง SQL
         $stmt = $this->connDB->prepare($strSQL);
@@ -70,6 +72,7 @@ class Member
         $stmt->bindParam(":memUsername", $this->memUsername);
         $stmt->bindParam(":memPassword", $this->memPassword);
         $stmt->bindParam(":memAge", $this->memAge);
+        $stmt->bindParam(":memImage", $this->memImage);
 
         //สั่งให้ SQL ทำงาน และส่งผลลัพธ์ว่าเพิ่มข้อมูลสําเร็จหรือไม่
         if($stmt->execute()){
