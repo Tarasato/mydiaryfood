@@ -37,16 +37,28 @@ $member->memImage = $picture_filename;
 $result = $member->registerMember();
 
 //ตรวจสอบข้อมูลจากการเรัยกใช้ฟังก์ชันตรวจสอบชื่อผู้ใช้ รหัสผ่าน
-if ($result == true) {
+if ($result == 1) {
     //insert-update-delete สำเร็จ
     $resultArray = array(
         "message" => "1"
     );
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
-} else {
+} else if ($result == 0) {
     //insert-update-delete ไม่สำเร็จ
     $resultArray = array(
         "message" => "0"
+    );
+    echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
+}else if ($result == 2) {
+    //username ซ้ำ
+    $resultArray = array(
+        "message" => "2"
+    );
+    echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
+}else if ($result == 3) {
+    //ชื่อ ซ้ำ
+    $resultArray = array(
+        "message" => "3"
     );
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
 }

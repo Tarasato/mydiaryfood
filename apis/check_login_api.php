@@ -19,7 +19,7 @@ $member->memUsername = $data->memUsername;
 $member->memPassword = $data->memPassword;
 
 //เรียกใช้ฟังก์ชันตรวจสอบชื่อผู้ใช้ รหัสผ่าน
-$result = $member->checkLogin();
+$result = $member->checkLoginCaseSensitive();
 
 //ตรวจสอบข้อมูลจากการเรัยกใช้ฟังก์ชันตรวจสอบชื่อผู้ใช้ รหัสผ่าน
 if ($result->rowCount() > 0) {
@@ -34,7 +34,8 @@ if ($result->rowCount() > 0) {
         "memPassword" => $memPassword,
         "memFullname" => $memFullName,
         "memEmail" => $memEmail,
-        "memAge" => strval($memAge)
+        "memAge" => strval($memAge),
+        "memImage" => $memImage
     );
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
     //echo json_encode(array("message" => "เข้าสู่ระบบ!!"));

@@ -21,6 +21,23 @@ $member->memUsername = $data->memUsername;
 $member->memPassword = $data->memPassword;
 $member->memAge = $data->memAge;
 
+//กรณีแก้ไขต้องตรวจสอบก่อนว่ามีการอัพโหลดรูปไหมมาหรือไม่
+if(isset($data->memImage)){
+    //------อัพรูปแบบ Base 64-------
+    //เก็บรูป Base64 ไว้ในตัวแปร
+    $picture_temp = $data->memImage;
+    //ตั้งชื่อรูปใหม่เพื่อใช้กับรูปที่เป็น Base 64 ที่ส่งมา
+    $picture_filename = "mem_" . uniqid() . "_"  . round(microtime(true)*10) . ".png";
+    //เอารูปที่เป็น Base64 แปลงเป็นรูปแล้วเก็บไว้ใน picupload/food/
+    //file_put_contents(ที่อยู่ของไฟล์+ชื่อไฟล์, ตัวไฟล์ที่จะอัปโหลดไว้)
+    file_put_contents("./../assets/images/picupload/memImages/" . $picture_filename, base64_decode($picture_temp));
+    //เอาชื่อไฟล์ไปกำหนดให้กับตัวแปรที่จะเก็บลงในฐานข้อมูล
+    $member->memImage = $picture_filename;
+    //---------------------------------
+}else{
+    $member->memImage = "";
+}
+
 //เรียกใช้ฟังก์ชันตรวจสอบชื่อผู้ใช้ รหัสผ่าน
 $result = $member->updateMember();
 
